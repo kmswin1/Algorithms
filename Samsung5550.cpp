@@ -24,23 +24,44 @@ int main(int argc, const char * argv[]) {
       int c,r,o,a,k;
       c = r = o = a = k = 0;
       for (int i=0;i<s.size();i++) {
+        int temp = 0;
         switch (s[i]) {
           case 'c':
                 c++;
-                if (c > ans) c = ans;
+                if (c > ans) ans = c;
+                temp = c;
                 break;
           case 'r':
                 r++;
+                if (r > ans) ans = -1;
+                if (r > c) ans = -1;
+                break;
           case 'o':
                 o++;
+                if (o > ans) ans = -1;
+                if (o > c || o > r) ans = -1;
+                break;
           case 'a':
                 a++;
+                if (a > ans) ans = -1;
+                if (a > o || a > r || a > c) ans = -1;
+                break;
           case 'k':
                 k++;
+                if (k > ans) ans = -1;
+                if (k > a || k > o || k > r || k > c) ans = -1;
+                c--;
+                o--;
+                r--;
+                a--;
+                k--;
+                break;
           default:
-          break;
+                break;
         }
+        if (ans == -1) break;
       }
+      if (c != 0 || r != 0 || o != 0 || a != 0 || k != 0) ans = -1;
       cout << "#" << t << " " << ans << endl;
     }
     return 0;
