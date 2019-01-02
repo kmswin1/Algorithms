@@ -24,12 +24,10 @@ int main(int argc, const char * argv[]) {
       int c,r,o,a,k;
       c = r = o = a = k = 0;
       for (int i=0;i<s.size();i++) {
-        int temp = 0;
         switch (s[i]) {
           case 'c':
                 c++;
                 if (c > ans) ans = c;
-                temp = c;
                 break;
           case 'r':
                 r++;
